@@ -21,21 +21,16 @@ print(*rcr(lst))
 
 
 
-m = int(input())
-n = int(input())
-a = []
-b = []
-for i in range(n):
-    a.append(int(input()))
- 
-for x in range(len(a)):
-    if a[x] + min(a) <= m:
-        b += [[a[x], min(a)]]
-        a[x] += m
-        a[a.index(min(a))] += m
-    else:
-        if a[x] > m:
-            continue
-        else:
-            b += [[a[x]]]
-print(len(b))
+m, n, c = int(input()), int(input()), 0
+t = sorted([int(input()) for _ in range(n)], reverse = True)
+if t[0] > m:
+  print('The problem has no solution')
+  exit()
+while len(t):
+  c += 1
+  k = m - t.pop(0)
+  for i in range(len(t)):
+    if t[i] <= k:
+      t.pop(i)
+      break
+print(c)
