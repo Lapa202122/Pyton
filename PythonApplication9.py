@@ -1,20 +1,11 @@
 # -*- coding: cp1251 -*-
 
 
-def fac(n):
-
- if n == 0:
-
-  return 1
-
- return fac(n-1) * n
-
-y=int(input())
-
-for i in range(y,0,-1):
-
- print(fac(i))
-
+def f(i): 
+    return 1 if i == 1 else i * f(i - 1)
+n = int(input('n: '))
+spisok = [f(n - i) for i in range(n)]
+print(spisok)
 
 
 
@@ -22,17 +13,17 @@ import collections
 
 pets = {
     1:{
-            "Мухтар": {
-                "Вид питомца": "Собака",
-                "Возраст питомца": 9,
-                "Имя владельца": "Павел"
+            "ГЊГіГµГІГ Г°": {
+                "Г‚ГЁГ¤ ГЇГЁГІГ®Г¬Г¶Г ": "Г‘Г®ГЎГ ГЄГ ",
+                "Г‚Г®Г§Г°Г Г±ГІ ГЇГЁГІГ®Г¬Г¶Г ": 9,
+                "Г€Г¬Гї ГўГ«Г Г¤ГҐГ«ГјГ¶Г ": "ГЏГ ГўГҐГ«"
             },
         },
     2:{
-            "Каа": {
-                "Вид питомца": "желторотый питон",
-                "Возраст питомца": 14,
-                "Имя владельца": "Саша"
+            "ГЉГ Г ": {
+                "Г‚ГЁГ¤ ГЇГЁГІГ®Г¬Г¶Г ": "Г¦ГҐГ«ГІГ®Г°Г®ГІГ»Г© ГЇГЁГІГ®Г­",
+                "Г‚Г®Г§Г°Г Г±ГІ ГЇГЁГІГ®Г¬Г¶Г ": 14,
+                "Г€Г¬Гї ГўГ«Г Г¤ГҐГ«ГјГ¶Г ": "Г‘Г ГёГ "
             },
         },
 }
@@ -40,18 +31,18 @@ pets = {
 
 def get_suffix(age):
     if age == 1:
-        return "год"
+        return "ГЈГ®Г¤"
     elif age > 1 and age < 5:
-        return "года"
+        return "ГЈГ®Г¤Г "
     else:
-        return "лет"
+        return "Г«ГҐГІ"
 
 
 def create():
-    print("### Комманда create")
-    key = input("Кличка питомца: ")
+    print("### ГЉГ®Г¬Г¬Г Г­Г¤Г  create")
+    key = input("ГЉГ«ГЁГ·ГЄГ  ГЇГЁГІГ®Г¬Г¶Г : ")
 
-    fields = ["Вид питомца", "Возраст питомца", "Имя владельца"]
+    fields = ["Г‚ГЁГ¤ ГЇГЁГІГ®Г¬Г¶Г ", "Г‚Г®Г§Г°Г Г±ГІ ГЇГЁГІГ®Г¬Г¶Г ", "Г€Г¬Гї ГўГ«Г Г¤ГҐГ«ГјГ¶Г "]
     temp = {key: dict()}
     for field in fields:
         res = input(f"{field}: ")
@@ -62,30 +53,30 @@ def create():
 
 
 def read():
-    print("### Комманда read")
-    ID = int(input("Введите ID: "))
+    print("### ГЉГ®Г¬Г¬Г Г­Г¤Г  read")
+    ID = int(input("Г‚ГўГҐГ¤ГЁГІГҐ ID: "))
 
     pet = get_pet(ID)
     if not pet:
-        print(f"Нет питомца с таким ID:{ID}")
+        print(f"ГЌГҐГІ ГЇГЁГІГ®Г¬Г¶Г  Г± ГІГ ГЄГЁГ¬ ID:{ID}")
         return
 
     key = [x for x in pet.keys()][0]
-    string = f'Это {pet[key]["Вид питомца"]} по кличке "{key}". ' \
-           f'Возраст питомца: {pet[key]["Возраст питомца"]} {get_suffix(pet[key]["Возраст питомца"])}. ' \
-           f'Имя владельца: {pet[key]["Имя владельца"]}'
+    string = f'ГќГІГ® {pet[key]["Г‚ГЁГ¤ ГЇГЁГІГ®Г¬Г¶Г "]} ГЇГ® ГЄГ«ГЁГ·ГЄГҐ "{key}". ' \
+           f'Г‚Г®Г§Г°Г Г±ГІ ГЇГЁГІГ®Г¬Г¶Г : {pet[key]["Г‚Г®Г§Г°Г Г±ГІ ГЇГЁГІГ®Г¬Г¶Г "]} {get_suffix(pet[key]["Г‚Г®Г§Г°Г Г±ГІ ГЇГЁГІГ®Г¬Г¶Г "])}. ' \
+           f'Г€Г¬Гї ГўГ«Г Г¤ГҐГ«ГјГ¶Г : {pet[key]["Г€Г¬Гї ГўГ«Г Г¤ГҐГ«ГјГ¶Г "]}'
     print(string)
 
 
 def update():
-    print("### Комманда update")
-    ID = int(input("Введите ID: "))
+    print("### ГЉГ®Г¬Г¬Г Г­Г¤Г  update")
+    ID = int(input("Г‚ГўГҐГ¤ГЁГІГҐ ID: "))
     pet = get_pet(ID)
     if not pet:
-        print(f"Нет питомца с таким ID:{ID}")
+        print(f"ГЌГҐГІ ГЇГЁГІГ®Г¬Г¶Г  Г± ГІГ ГЄГЁГ¬ ID:{ID}")
         return
     kkey = [x for x in pet.keys()][0]
-    print("Введите данные или оставьте поле пустым. Нажмите Enter")
+    print("Г‚ГўГҐГ¤ГЁГІГҐ Г¤Г Г­Г­Г»ГҐ ГЁГ«ГЁ Г®Г±ГІГ ГўГјГІГҐ ГЇГ®Г«ГҐ ГЇГіГ±ГІГ»Г¬. ГЌГ Г¦Г¬ГЁГІГҐ Enter")
 
     temp = dict()
     for key, value in pet[kkey].items():
@@ -97,8 +88,8 @@ def update():
 
 
 def delete():
-    print("### Комманда delete")
-    ID = int(input("Введите ID: "))
+    print("### ГЉГ®Г¬Г¬Г Г­Г¤Г  delete")
+    ID = int(input("Г‚ГўГҐГ¤ГЁГІГҐ ID: "))
     pets.pop(ID, None)
 
 
@@ -121,13 +112,13 @@ commands = {
 }
 
 def print_commands():
-    print("Список доступных комманд:")
+    print("Г‘ГЇГЁГ±Г®ГЄ Г¤Г®Г±ГІГіГЇГ­Г»Гµ ГЄГ®Г¬Г¬Г Г­Г¤:")
     for key in commands:
         print("> ", key)
 
 while True:
     print_commands()
-    command = input("Введите команду: ")
+    command = input("Г‚ГўГҐГ¤ГЁГІГҐ ГЄГ®Г¬Г Г­Г¤Гі: ")
 
     if command not in commands.keys():
         continue
@@ -135,4 +126,4 @@ while True:
     if command == "stop":
         break
     commands[command]()
-    input("Продолжить...")
+    input("ГЏГ°Г®Г¤Г®Г«Г¦ГЁГІГј...")
